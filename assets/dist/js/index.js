@@ -1,73 +1,90 @@
+/*Javascript para las funcionalidades de la pagina principal*/
 
-var texto = "Shrek";
+////////////////////Barra de Busqueda
+var texto = "";
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
 
 searchButton.addEventListener('click', () => {
     const inputValue = searchInput.value;
     sessionStorage.setItem("textoBusqueda", inputValue);
-    window.location.href = "index_demo_2.html?"
-    //alert("buscando "+inputValue);   
+    window.location.href = "index_demo_2.html?"       
 });
 
-/*
+/*Pruebas Consumo de la API Mercado Libre
 class Servicio {
-    constructor(url,id) {
+    constructor(url) {
         this.url = url;
-        this.id = id;   
     }   
 }
 
-async function getServicio(url, id){
+async function getServicio(url){
     let urlServicio = url;
     const Respuesta = await fetch(urlServicio);
     const data = await Respuesta.json();    
     return data;
 }
-*/
 
-/*
 async function renderData(OjetoServicio) {
-    const data = await getServicio(OjetoServicio.url, OjetoServicio.id);
-    
+    const data = await getServicio(OjetoServicio.url);    
     console.log(data);
-    
-    console.log(data.name);
-    console.log(data.sprites.back_default);
-
-    let datos = document.createElement('h2');
-    datos.textContent = `${data.name}`+" #"+`${data.id}`;
-
-    let pokeImagen = document.createElement('img');
-    pokeImagen.setAttribute('src', data.sprites.front_default);
-    pokeImagen.style.width = '150px';    
-
-    pokemonDiv.appendChild(datos);
-    pokemonDiv.appendChild (pokeImagen);
 }
-*/
-//MLA de consolas y videojuegos MLA1144
 
+//MLA de consolas y videojuegos MLA1144
 //Busqueda de Todas las categorias existentes
-//const newPokeService = new Servicio('https://api.mercadolibre.com/sites/MLA/categories', 12)
+//const newService = new Servicio('https://api.mercadolibre.com/sites/MLA/categories')
 
 //Busqueda de los atributos de una categoria MLA1144
-//const newPokeService = new Servicio('https://api.mercadolibre.com/categories/MLA438566/attributes', 12)
+//const newService = new Servicio('https://api.mercadolibre.com/categories/MLA438566/attributes')
 
 /*Busqueda del dominio segun un query del usuario "xbox"
-https://api.mercadolibre.com/sites/MLA/domain_discovery/search?q=xbox
+//const newService = new Servicio('https://api.mercadolibre.com/sites/MLA/domain_discovery/search?q=xbox')
+RESULTADOS
 category_id: "MLA438566"    category_name: "Consolas"   domain_id: "MLA-GAME_CONSOLES"
 domain_name: "Consolas de juegos"*/
-//const newPokeService = new Servicio('https://api.mercadolibre.com/sites/MLA/domain_discovery/search?q=xbox', 12)
 
 //Busqueda de tendencias
-//const newPokeService = new Servicio('https://api.mercadolibre.com/trends/MLA/MLA438566', 12)
-
-//////////////////////////////*******************************//////////////////////////////////
-//const newPokeService = new Servicio('', 12)
+//const newService = new Servicio('https://api.mercadolibre.com/trends/MLA/MLA438566')
 
 //Busqueda de producto "xbox s"
-//const newPokeService = new Servicio('https://api.mercadolibre.com/sites/MLA/search?q=xbox s', 12)
+//const newService = new Servicio('https://api.mercadolibre.com/sites/MLA/search?q=xbox s')
 
+//renderData(newService);
 
-//renderData(newPokeService);
+////////////////////Fin Barra de Busqueda
+////////////////////Inicio Muestra de Tendencias
+class mercadoObjeto{
+    constructor(){
+    }
+    async getlink(){
+        let mercadourl = await fetch("https://api.mercadolibre.com/sites/MLA/search?category=MLA438566");
+        let respuesta = await mercadourl.json();
+        return respuesta;
+    }
+}
+
+//el renderizador de la primera página
+let mercado = new mercadoObjeto(25,30);
+async function subcategories(mercadoObjeto){
+    let items = await mercadoObjeto.getlink();
+    console.log(items.results);
+    for(let i=0;i<9;i++){
+        let imagen = document.getElementById(`imagen${i}`);
+        imagen.setAttribute('src',items.results[i].thumbnail);
+        let texto = document.getElementById(`titulo${i}`);
+        texto.textContent = items.results[i].title;
+    }
+    for(let j=0;j<3;j++){
+        let a = Math.floor(Math.random()*items.results.length);
+        let texto = document.getElementById(`carusel${j}`);
+        texto.textContent = items.results[a].title;
+        let imagen = document.getElementById(`imagencar${j}`);
+        imagen.setAttribute('src',items.results[a].thumbnail);
+        let busqueda = document.getElementById(`buscar${j}`);
+        busqueda.setAttribute('href',`https://listado.mercadolibre.com.mx/${items.results[a].title}#D[A:${items.results[a].title}]`);
+    }
+}
+subcategories(mercado);
+console.log(mercado);
+
+////////////////////Fin Muestra de Tendencias
