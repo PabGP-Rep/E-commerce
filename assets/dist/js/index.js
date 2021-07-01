@@ -53,20 +53,21 @@ domain_name: "Consolas de juegos"*/
 
 ////////////////////Fin Barra de Busqueda
 ////////////////////Inicio Muestra de Tendencias
-class mercadoObjeto{
-    constructor(){
+class Categoria{
+    constructor(categorie){
+        this.categorie = categorie;
     }
     async getlink(){
-        let mercadourl = await fetch("https://api.mercadolibre.com/sites/MLA/search?category=MLA438566");
+        let mercadourl = await fetch(`https://api.mercadolibre.com/sites/MLA/search?category=${this.categorie}`);
         let respuesta = await mercadourl.json();
         return respuesta;
     }
 }
-
 //el renderizador de la primera página
-let mercado = new mercadoObjeto(25,30);
-async function subcategories(mercadoObjeto){
-    let items = await mercadoObjeto.getlink();
+
+async function Productos_fotos_precios(Categoria){
+    let items = await Categoria.getlink();
+    console.log(items);
     console.log(items.results);
     for(let i=0;i<9;i++){
         let imagen = document.getElementById(`imagen${i}`);
@@ -81,10 +82,37 @@ async function subcategories(mercadoObjeto){
         let imagen = document.getElementById(`imagencar${j}`);
         imagen.setAttribute('src',items.results[a].thumbnail);
         let busqueda = document.getElementById(`buscar${j}`);
-        busqueda.setAttribute('href',`https://listado.mercadolibre.com.mx/${items.results[a].title}#D[A:${items.results[a].title}]`);
+        busqueda.setAttribute('href',items.results[a].permalink);
     }
 }
-subcategories(mercado);
-console.log(mercado);
+
+class Producto{
+    constructor(buscar){
+        this.buscar = buscar;
+    }
+    async getproducto(){
+        let productos = await fetch(`https://api.mercadolibre.com/items/${this.buscar}`);
+        let productos_json = productos.json();
+        return productos_json;
+    }
+    async getatributos(){
+        let atributos = await this.getproducto();
+        console.log(atributos);
+    }
+}
+
+class Carrito{
+    constructor(){
+        this.productos = [];
+    }
+    async getorden(producto){
+        let precio = producto.installments.amount;
+        let nombre = producto.id;
+        this.productos.push({'precio':precio,'nombre':nombre});
+    }
+}
+
+let mercado = new Categoria("MLA438566");
+Productos_fotos_precios(mercado);
 
 ////////////////////Fin Muestra de Tendencias
