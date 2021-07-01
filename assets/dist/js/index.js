@@ -69,13 +69,19 @@ async function Productos_fotos_precios(Categoria){
     let items = await Categoria.getlink();
     console.log(items);
     console.log(items.results);
-    for(let i=0;i<9;i++){
+    for (let i=0;i<9;i++) {
+
         let imagen = document.getElementById(`imagen${i}`);
         imagen.setAttribute('src',items.results[i].thumbnail);
         let texto = document.getElementById(`titulo${i}`);
         texto.textContent = items.results[i].title;
-    }
-    for(let j=0;j<3;j++){
+        let boton = document.getElementById(`boton${i}`);
+        boton.setAttribute('herf',items.results[i].permalink);
+        console.log(items.results[i].permalink);
+    } 
+
+    for(let j=0;j<3;j++) {
+
         let a = Math.floor(Math.random()*items.results.length);
         let texto = document.getElementById(`carusel${j}`);
         texto.textContent = items.results[a].title;
@@ -83,6 +89,7 @@ async function Productos_fotos_precios(Categoria){
         imagen.setAttribute('src',items.results[a].thumbnail);
         let busqueda = document.getElementById(`buscar${j}`);
         busqueda.setAttribute('href',items.results[a].permalink);
+
     }
 }
 
