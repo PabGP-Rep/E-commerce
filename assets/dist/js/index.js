@@ -76,7 +76,7 @@ async function Productos_fotos_precios(Categoria){
         let texto = document.getElementById(`titulo${i}`);
         texto.textContent = items.results[i].title;
         let boton = document.getElementById(`boton${i}`);
-        boton.setAttribute('herf',items.results[i].permalink);
+        boton.setAttribute('href',items.results[i].permalink);
         console.log(items.results[i].permalink);
     } 
 
