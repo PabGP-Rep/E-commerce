@@ -65,7 +65,7 @@ class Categoria{
 }
 //el renderizador de la primera página
 
-async function Productos_fotos_precios(Categoria){
+async function Productos_fotos_nombres(Categoria){
     let items = await Categoria.getlink();
     console.log(items);
     console.log(items.results);
@@ -120,6 +120,6 @@ class Carrito{
 }
 
 let mercado = new Categoria("MLA438566");
-Productos_fotos_precios(mercado);
+Productos_fotos_nombres(mercado);
 
 ////////////////////Fin Muestra de Tendencias
