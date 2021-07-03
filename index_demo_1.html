@@ -10,6 +10,7 @@
     <title>Tecla Tienda Online</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+    <link rel="stylesheet" href="estilos.css">
 
 
 
@@ -42,7 +43,7 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Carousel</a>
+          <a class="navbar-brand" href="#" id="tuscompras">Tuscompras.com</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -50,13 +51,10 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="navbar-brand " type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" id="cliente">Cliente</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link" href="#">Carrito</a>
               </li>
             </ul>
             <form class="d-flex">
@@ -67,151 +65,11 @@
         </div>
       </nav>
     </header>
-
-    <main>
-      <div style="border: 5px solid black; text-align: center;font-size: x-large;font-family: cursive; color: black;">
-        Busca algo más en mercadolibre.com
-      </div>
-      <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-            aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777" />
-            </svg>
-
-            <div class="container">
-              <div class="carousel-caption text-start">
-                <div style="text-align: center;">
-                  <img id="imagencar0" width="200px" height="200px">
-                  <h1 id="carusel0">Example headline.</h1>
-                  <p><a target="blank" id="buscar0" class="btn btn-lg btn-primary" href="#">Ver más</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777" />
-            </svg>
-
-            <div class="container">
-              <div class="carousel-caption">
-                <div style="text-align: center;">
-                  <img id="imagencar1" width="200px" height="200px">
-                  <h1 id="carusel1">Another example headline.</h1>
-                  <p><a target="blank" id="buscar1" class="btn btn-lg btn-primary" href="#">Ver más</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <rect width="100%" height="100%" fill="#777" />
-            </svg>
-
-            <div class="container">
-              <div class="carousel-caption text-end">
-                <div style="text-align: center;">
-                  <img id="imagencar2" width="200px" height="200px">
-                  <h1 id='carusel2'>One more for good measure.</h1>
-                  <p><a target="blank" id="buscar2" class="btn btn-lg btn-primary" href="#">Ver más</a></p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-
-      </div>
-
-      <div style="border: 5px solid black; text-align: center;font-size: x-large;font-family: cursive; color: black;">
-        Los más buscados
-      </div>
-
-      <div class="container marketing">
-
-        <div class="row">
-
-          <div class="col-lg-4">
-            <img id='imagen0' width="100px" height="100px"></img>
-            <h4 id='titulo0'>Heading</h4>
-            <p><a target="blank" id="boton0" class="btn btn-secondary" href="#">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen1' width="100px" height="100px"></img>
-            <h4 id="titulo1">Heading</h4>
-            <p><a id="boton1" target="blank" class="btn btn-secondary" href="#">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen2' width="100px" height="100px"></img>
-            <h4 id="titulo2">Heading</h4>
-            <p><a id="boton2" class="btn btn-secondary" target="blank" href="#">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen3' width="100px" height="100px"></img>
-            <h4 id="titulo3">Heading</h4>
-            <p><a id="boton3" class="btn btn-secondary" href="#" target="blank">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen4' width="100px" height="100px"></img>
-            <h4 id="titulo4">Heading</h4>
-            <p><a class="btn btn-secondary" id="boton4" href="#" target="blank">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen5' width="100px" height="100px"></img>
-            <h4 id="titulo5">Heading</h4>
-            <p><a id="boton5" class="btn btn-secondary" href="#" target="blank">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen6' width="100px" height="100px"></img>
-            <h4 id="titulo6">Heading</h4>
-            <p><a id="boton6" class="btn btn-secondary" href="#" target="blank">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen7' width="100px" height="100px"></img>
-            <h4 id="titulo7">Heading</h4>
-            <p><a id="boton7" class="btn btn-secondary" href="#" target="blank">View details &raquo;</a></p>
-          </div>
-
-          <div class="col-lg-4">
-            <img id='imagen8' width="100px" height="100px"></img>
-            <h4 id="titulo8">Heading</h4>
-            <p><a class="btn btn-secondary" id="boton8" href="#" target="blank">View details &raquo;</a></p>
-          </div>
-
-        </div>
-
-    </main>
-
+    <div id="division" style="margin: 10px;">
+    </div>
+    <script src="../assets/dist/js/carrito.js"></script>
     <script src="../assets/dist/js/index.js"></script>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+    
   </body>
 </html>
