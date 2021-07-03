@@ -93,32 +93,6 @@ async function Productos_fotos_nombres(Categoria){
     }
 }
 
-class Producto{
-    constructor(buscar){
-        this.buscar = buscar;
-    }
-    async getproducto(){
-        let productos = await fetch(`https://api.mercadolibre.com/items/${this.buscar}`);
-        let productos_json = productos.json();
-        return productos_json;
-    }
-    async getatributos(){
-        let atributos = await this.getproducto();
-        console.log(atributos);
-    }
-}
-
-class Carrito{
-    constructor(){
-        this.productos = [];
-    }
-    async getorden(producto){
-        let precio = producto.installments.amount;
-        let nombre = producto.id;
-        this.productos.push({'precio':precio,'nombre':nombre});
-    }
-}
-
 let mercado = new Categoria("MLA438566");
 Productos_fotos_nombres(mercado);
 
