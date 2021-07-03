@@ -1,5 +1,7 @@
 /*Javascript para las funcionalidades de la pagina principal*/
-
+let cliente = new Cliente(2233345);
+cliente.mostrar_Carrito();
+let elementos = [];
 ////////////////////Barra de Busqueda
 var texto = "";
 const searchButton = document.getElementById('search-button');
@@ -68,6 +70,12 @@ class Categoria{
     }
 }
 //el renderizador de la primera página
+function agregar_Producto(cliente_id, producto_id){
+  console.log("agregando producto "+ elementos[producto_id].title+ " para el cliente"+cliente_id+" con precio "+elementos[producto_id].price);
+  cliente.carrito_compras.addProducto(elementos[producto_id].id)
+  cliente.mostrar_Carrito();
+  
+}
 
 async function Categorias_fotos(){
     let division = document.getElementById('division');
@@ -94,7 +102,7 @@ async function Categorias_fotos(){
                     boton.setAttribute('target','blank');
                     boton.setAttribute('type','button');
                     boton.addEventListener('click', () =>{
-                        Productos_fotos(response_categoria);
+                        Productos_fotos(response_categoria,cliente.id);
                     })
                     new_division.appendChild(boton);
                 })
@@ -115,8 +123,10 @@ async function Categorias_fotos(){
 async function Productos_fotos(categoria,cliente_id) {
     document.getElementById('division').innerHTML='';
     let resultados = categoria.results;
+    let index = 0;
     let division = document.createDocumentFragment();
-    resultados.forEach((element) => {
+    resultados.forEach((element,index) => {
+        elementos.push(element);
         let new_division = document.createElement('div');
         new_division.setAttribute('style','background:#D4FF33;height:300px; width:200px; border:1px solid black; margin:5px; text-align:center; padding:10px');
         let imagen = document.createElement('img');
@@ -131,11 +141,14 @@ async function Productos_fotos(categoria,cliente_id) {
         precio.textContent = '$'+element.price.toString();
         new_division.appendChild(precio);
         let formato = document.createElement('form');
-        formato.setAttribute('action',element.permalink);
-        formato.setAttribute('target','_blank');
+        //formato.setAttribute('action',element.permalink);
+        //formato.setAttribute('target','_blank');
         let In_put = document.createElement('button');
         In_put.textContent = 'Comprar';
-        In_put.setAttribute('target','blank');
+        //In_put.setAttribute('target','blank');
+        //console.log(elementos[0]);
+        In_put.setAttribute('id',`${index}`);
+        In_put.setAttribute('onclick',`agregar_Producto(${cliente_id},${In_put.id} )`);
         formato.appendChild(In_put);
         new_division.appendChild(formato);
         division.appendChild(new_division);
@@ -147,7 +160,7 @@ async function Productos_fotos(categoria,cliente_id) {
     document.getElementById('division').appendChild(division);
 }
 
-let cliente = new Cliente(2233345);
+
 Categorias_fotos();
 
 const clientes = document.getElementById('cliente');
