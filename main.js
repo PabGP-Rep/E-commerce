@@ -4,7 +4,6 @@ let cliente = new Cliente(2233345);
 cliente.mostrar_Carrito();
 let elementos = [];
 
-var texto = "";
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
 
